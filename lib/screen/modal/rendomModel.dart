@@ -17,7 +17,7 @@ class RendomModel {
     this.info,
   });
 
-  factory RendomModel.fromJson(Map<String, dynamic> json) => RendomModel(
+  factory RendomModel.fromJson(Map<int, dynamic> json) => RendomModel(
     results: json["results"] == null ? [] : List<Result>.from(json["results"]!.map((x) => Result.fromJson(x))),
     info: json["info"] == null ? null : Info.fromJson(json["info"]),
   );

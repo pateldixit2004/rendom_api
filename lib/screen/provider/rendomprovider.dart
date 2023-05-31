@@ -3,13 +3,11 @@ import 'package:rendom_api/utils/api_helper.dart';
 
 import '../modal/rendomModel.dart';
 
-class RandomProvider extends ChangeNotifier
+class RandomProvider extends ChangeNotifier {
+  RendomModel randomModel = RendomModel();
 
-{
-
-  Future<RendomModel> randomGet()
-  async {
-    RendomModel randomModel=await Apihelper.apihelper.getApi();
-    return randomModel;
+  void randomGet() async {
+    randomModel = await Apihelper.apihelper.getApi();
+    notifyListeners();
   }
 }

@@ -16,29 +16,29 @@ class _HomeScreenState extends State<HomeScreen> {
   RandomProvider? prividerT;
 
   @override
+  void initState() {
+    super.initState();
+    Provider.of<RandomProvider>(context,listen: false).randomGet();
+  }
+
+  @override
   Widget build(BuildContext context) {
+
     prividerF = Provider.of<RandomProvider>(context, listen: false);
     prividerT = Provider.of<RandomProvider>(context, listen: true);
+
+
     return SafeArea(
       child: Scaffold(
-        body: FutureBuilder(
-          future: prividerF!.randomGet(),
-          builder: (context, snapshot) {
-            if(snapshot.hasData)
-              {
-                RendomModel? randomModel = snapshot.data;
-                return ListView.builder(itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text("${randomModel!.results![index].login!.username}"),
-                  );
-                },itemCount: randomModel!.results!.length,);
-              }
-            else if(snapshot.hasError)
-              {
-                return Text("${snapshot.hasError}");
-              }
-            return CircularProgressIndicator();
-          },
+        appBar: AppBar(
+
+        ),
+        body: ListView.builder(itemBuilder: (context, index) {
+          RendomModel? randomModel = RendomModel();
+          return ListTile(
+            title: Text("${randomModel!.info!.seed}"),
+          );
+        },
         ),
       ),
     );
