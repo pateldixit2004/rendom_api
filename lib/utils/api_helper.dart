@@ -8,12 +8,15 @@ import '../screen/modal/rendomModel.dart';
 class Apihelper
 {
   static Apihelper apihelper=Apihelper();
-  Future<RendomModel> getApi()
+  Future<RandomModel> getApi()
   async {
     String link='https://randomuser.me/api/';
     var responce=await http.get(Uri.parse(link));
     var json=jsonDecode(responce.body);
-    RendomModel randomModel=RendomModel.fromJson(json);
+
+    RandomModel randomModel=RandomModel.fromJson(json);
+    print(randomModel);
+
     return randomModel;
   }
 }

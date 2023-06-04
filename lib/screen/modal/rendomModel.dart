@@ -1,23 +1,23 @@
 // To parse this JSON data, do
 //
-//     final rendomModel = rendomModelFromJson(jsonString);
+//     final randomModel = randomModelFromJson(jsonString);
 
 import 'dart:convert';
 
-RendomModel rendomModelFromJson(String str) => RendomModel.fromJson(json.decode(str));
+RandomModel randomModelFromJson(String str) => RandomModel.fromJson(json.decode(str));
 
-String rendomModelToJson(RendomModel data) => json.encode(data.toJson());
+String randomModelToJson(RandomModel data) => json.encode(data.toJson());
 
-class RendomModel {
+class RandomModel {
   List<Result>? results;
   Info? info;
 
-  RendomModel({
+  RandomModel({
     this.results,
     this.info,
   });
 
-  factory RendomModel.fromJson(Map<int, dynamic> json) => RendomModel(
+  factory RandomModel.fromJson(Map<String, dynamic> json) => RandomModel(
     results: json["results"] == null ? [] : List<Result>.from(json["results"]!.map((x) => Result.fromJson(x))),
     info: json["info"] == null ? null : Info.fromJson(json["info"]),
   );
@@ -161,7 +161,7 @@ class Location {
   String? city;
   String? state;
   String? country;
-  int? postcode;
+  dynamic? postcode;
   Coordinates? coordinates;
   Timezone? timezone;
 
