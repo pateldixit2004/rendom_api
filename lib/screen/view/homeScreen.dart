@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rendom_api/screen/provider/rendomprovider.dart';
 
-import '../modal/rendomModel.dart';
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -33,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
           title: Text("Refresh Api"),
           centerTitle: true,
         ),
-        body: Column(
+        body: prividerT!.randomModel==null?CircularProgressIndicator():Column(
           children: [
             Container(
               child: Column(
@@ -68,11 +66,14 @@ class _HomeScreenState extends State<HomeScreen> {
             // ),
 
             ClipRRect(
-              child: CachedNetworkImage(imageUrl: '${prividerF!.randomModel!.results![0].picture!.large}',
+              child: CachedNetworkImage(
+                imageUrl: '${prividerF!.randomModel!.results![0].picture!.medium}',
                 progressIndicatorBuilder: (context, url, progress) => Center(
-                  child: Image.asset('assets/image/img.png',),
-                )
-
+                  child: Image.asset(
+                    'assets/image/img.png',
+                  ),
+                ),
+                errorWidget: (context, url, error) => Icon(Icons.account_circle),
               ),
             ),
             Row(
